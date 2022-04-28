@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-interface IFeedProps {
+import { Box } from "@mui/material"
+interface IFeedProps{
+
 }
 
 const Feed: React.FunctionComponent<IFeedProps> = (props) => {
-  return <div>
-    Feed
-  </div>;
+  return <Box bgcolor={"springgreen"} flex={4}>Feed</Box>;
 };
 
 export default Feed;
