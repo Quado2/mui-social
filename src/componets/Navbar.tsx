@@ -8,8 +8,10 @@ import {
   InputBase,
   Badge,
   Avatar,
+  MenuItem,
+  Menu,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 interface Props {}
 
@@ -26,13 +28,30 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
-  display: "flex",
-  gap:10,
+  display: "none",
+  gap: 10,
   justifyContent: "center",
-  alignItems:"center"
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {
+    display: "flex",
+  },
+}));
+
+const UserBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
 }));
 
 const Navbar: React.FC<Props> = () => {
+  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  function handleClose() {}
+
   return (
     <AppBar position="static">
       <StyledToolbar>
@@ -50,8 +69,39 @@ const Navbar: React.FC<Props> = () => {
           <Badge badgeContent={2} color="error">
             <Notifications />
           </Badge>
-          <Avatar sx={{width: "30px", height: "30px", marginBottom:"10px"}} src="https://www.pngfind.com/pngs/m/4-48198_business-man-business-man-face-png-transparent-png.png" />
+          <Avatar
+            onClick={() => setOpen(true)}
+            
+            sx={{ width: "30px", height: "30px", marginBottom: "10px", cursor: "pointer"}}
+            src="https://www.pngfind.com/pngs/m/4-48198_business-man-business-man-face-png-transparent-png.png"
+          />
         </Icons>
+        <UserBox onClick={() => setOpen(true)}>
+          <Avatar
+            sx={{ width: "30px", height: "30px", marginBottom: "10px" }}
+            src="https://www.pngfind.com/pngs/m/4-48198_business-man-business-man-face-png-transparent-png.png"
+          />
+          <Typography variant="h6">Quado</Typography>
+        </UserBox>
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={() => setOpen(false)}
+          anchorOrigin={{
+            vertical: 45,
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+        >
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
       </StyledToolbar>
     </AppBar>
   );
