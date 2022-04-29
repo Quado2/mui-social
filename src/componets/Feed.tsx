@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 import Post from "./Post";
+import Add from "./Add";
 interface IFeedProps {}
 
 const Feed: React.FunctionComponent<IFeedProps> = (props) => {
@@ -28,6 +29,7 @@ const Feed: React.FunctionComponent<IFeedProps> = (props) => {
       <Post />
       <Post />
       <Post />
+      <Add />
     </Stack>
   );
 };

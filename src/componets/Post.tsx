@@ -19,7 +19,7 @@ interface IPostProps {}
 
 const Post: React.FunctionComponent<IPostProps> = (props) => {
   return (
-    <Card sx={{ maxWidth: 345, margin:"20px 0" }}>
+    <Card sx={{ maxWidth: 500, margin:"20px 0" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">

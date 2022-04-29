@@ -21,10 +21,15 @@ import {
   Tooltip,
 } from "@mui/material";
 import * as React from "react";
+import { Dispatch, SetStateAction } from "react";
+import Add from "./Add";
 
-interface ISidebarProps {}
+interface ISidebarProps {
+  mode:string, 
+  setMode:Dispatch<SetStateAction<string>>
+}
 
-const Sidebar: React.FunctionComponent<ISidebarProps> = (props) => {
+const Sidebar: React.FunctionComponent<ISidebarProps> = ({mode, setMode}) => {
   return (
     <Box p={2} sx={{ display: { xs: "none", sm: "block" } }} flex={1}>
       <Box position="fixed">
@@ -91,13 +96,11 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = (props) => {
               <ListItemIcon>
                 <ModeNight />
               </ListItemIcon>
-              <Switch defaultChecked />
+              <Switch onChange={()=>setMode(mode => mode==="light"?"dark":"light")} defaultChecked />
             </ListItemButton>
           </ListItem>
         </List>
-        <Tooltip title="Delete">
-          
-        </Tooltip>
+      
       </Box>
     </Box>
   );
